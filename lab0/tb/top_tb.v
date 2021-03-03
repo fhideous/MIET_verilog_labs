@@ -21,10 +21,8 @@
 
 
 module top_tb( );
-   reg [15:0]     SW;
-   reg [4:0]      BTN;
+   reg [15:0]     SW;;
    
-   wire [15:0]      LED;
    wire             CA;
    wire             CB;
    wire             CC;
@@ -34,41 +32,74 @@ module top_tb( );
    wire             CG;
    wire             DP;
    wire [7:0]       AN;
-
+   wire [7:0]       HEX;
+   
 top dut(
 
     .SW     ( SW ),
-    .BTN    ( BTN ),
-    
-    .LED    ( LED ),
+
+
     .CA     ( CA ),
     .CB     ( CB ),
     .CC     ( CC ),
     .CD     ( CD ),
     .CE     ( CE ),
     .CF     ( CF ),
-    .CG     ( CG )
+    .CG     ( CG ),
+    .DP     ( DP )
 );
 
 initial begin 
-    SW = 16'h5;
-    #100;
-    SW = 16'h1111;
-    #100;
-    SW = 16'h2222;
-    #100;
-    $stop;    
+  SW = 16'd0;
+  #10;
+  repeat(1024)
+  begin 
+    #10;
+    SW = SW + 16'd1;
+  end
 end
 
-initial begin 
-    BTN = 5'h19;
-    repeat(10) begin
-    #10;
-    BTN = BTN + 1'b1;
-    end
-    #150;
-    BTN = 5'h22;
-    $stop;    
-end
-    
+//initial begin 
+//  SW[4] = 1'd0;
+//  SW[5] = 1'd0;
+//  SW[6] = 1'd0;
+//  SW[7] = 1'd0;
+  
+//  #10;
+//  repeat(32)
+//  begin 
+//    #10;
+//    SW[4] = SW[4] + 1'd1;
+//    #20;
+//    SW[5] = SW[5] + 1'd1;
+//    #30;
+//    SW[6] = SW[6] + 1'd1;
+//    #40;
+//    SW[7] = SW[7] + 1'd1;
+//     #10;
+//    SW[4] = SW[4] - 1'd1;
+//    #20;
+//    SW[5] = SW[5] - 1'd1;
+//    #30;
+//    SW[6] = SW[6] - 1'd1;
+//    #40;
+//    SW[7] = SW[7] - 1'd1;
+//  end
+//end
+
+
+
+//initial begin 
+//  SW[8] = 1'd0;
+//  SW[9] = 1'd0;
+//  #100;
+//  SW[8] = SW[8] + 1'd1;
+//  #100;
+//  SW[9] = SW[9] + 1'd1;
+//  #100;
+//  SW[8] = SW[8] - 1'd1;
+//  #100;
+//  SW[9] = SW[9] - 1'd1;
+//end
+
 endmodule
