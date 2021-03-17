@@ -45,13 +45,13 @@ always @(x_bus) begin
     4'b0111:    dc_dec_out <= 8'b1111_1000;
     4'b1000:    dc_dec_out <= 8'b1000_0000;
     4'b1001:    dc_dec_out <= 8'b1001_0000;
-    4'b1011:    dc_dec_out <= 8'b1000_1000;
-    4'b1100:    dc_dec_out <= 8'b1000_0011;
-    4'b1101:    dc_dec_out <= 8'b1100_0011;
-    4'b1110:    dc_dec_out <= 8'b1010_0001;
-    4'b1111:    dc_dec_out <= 8'b1011_0000;
-    4'b1010:    dc_dec_out <= 8'b1011_1000;
-//    default:    dc_dec_out <= 8'b0000_0000;
+    4'b1010:    dc_dec_out <= 8'b1000_1000;
+    4'b1011:    dc_dec_out <= 8'b1000_0011;
+    4'b1100:    dc_dec_out <= 8'b1111_0000;
+    4'b1101:    dc_dec_out <= 8'b1010_0001;
+    4'b1110:    dc_dec_out <= 8'b1011_0000;
+    4'b1111:    dc_dec_out <= 8'b1011_1000;
+    default:    dc_dec_out <= 8'b1111_1111;
   endcase
 end
 

@@ -21,13 +21,10 @@
 
 
 module DC2(
-    input x0,
-    input x1,
-    input x2,
-    input x3,
-    output what
+    input [3:0] x,
+    output [3:0]what
     );
+     
+    assign what = 4'd2 * (x[0] + x[1] + x[2] + x[3]);
     
-    assign what = x0;
-
 endmodule
