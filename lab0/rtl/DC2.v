@@ -25,6 +25,7 @@ module DC2(
     output [3:0]what
     );
      
-    assign what = 4'd2 * (x[0] + x[1] + x[2] + x[3]);
+    assign what = x << 1;
+//    assign what = 4'd2 * (x[0] + 4'd2 * x[1] + 4'd4 * x[2] + 4'd8 * x[3]);
     
 endmodule

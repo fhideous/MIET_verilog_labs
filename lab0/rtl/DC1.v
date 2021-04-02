@@ -28,12 +28,9 @@ module DC1(
     output [3:0]what
     );
     
-    assign x01 = ~x0 & x1;
-    assign x23 = ~x2 & x3;
-    assign x12 = ~x1 & x2;
-//    assign what = (4'd2 * (x01 && x23)) || x23 || x12 || x01;   
-    assign what =  (x23 | x01) || x12;   
-     
-//    assign what = ( 4'd2 *(~x0 & x1 & ~x2 & x3)) | (~x0 & x1 || ~x2 & x3 || ~x1 & x2);
+    assign x01 = x0 & ~x1;
+    assign x23 = x2 & ~x3;
+    assign x12 = x1 & ~x2;
+    assign what = x23 + x12 + x01;   
         
 endmodule
