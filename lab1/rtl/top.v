@@ -1,7 +1,7 @@
 module top
-#(
-    parameter COUNT_INC = 3
- )
+//#(
+//    parameter COUNT_INC = 3
+// )
 (   
    input clk,
    input reset,
@@ -9,14 +9,14 @@ module top
    input [15:0]     SW,
    input [4:0]      BTN,
    
-   output [15:0]    LED,   
+//   output [15:0]    LED,   
    output [6:0]     HEX,
    output           DP,
    output [7:0]     AN
 
 );
 
-localparam COUNT_WIDTH = 16;
+//localparam COUNT_WIDTH = 16;
 localparam LEFT_BUT = 0;
 localparam RIGHT_BUT = 1;
 
@@ -33,15 +33,19 @@ DC_DEC s_segm(
 
 
 // ==========================
-//btn_press_flag
-reg [2:0] btn_delay;
-wire      btn_press_R;
-assign btn_press_R = !btn_delay[2] & btn_delay[1] & btn_delay[0];
+//btns_press_flags
+reg [2:0] btn_delay_R, btn_delay_L;
+wire      btn_press_R, btn_press_L;
+assign btn_press_R = !btn_delay_R[2] & btn_delay_R[1] & btn_delay_R[0];
+assign btn_press_L = !btn_delay_L[2] & btn_delay_L[1] & btn_delay_L[0];
 always @(posedge clk) begin
     if(!reset) begin
-        btn_delay <= 'b0;
+        btn_delay_R <= 'b0;
+        btn_delay_L <= 'b0;
     end else begin
-       btn_delay <= {btn_delay[1:0], BTN[RIGHT_BUT]};
+       btn_delay_R <= {btn_delay_R[1:0], BTN[RIGHT_BUT]};
+       btn_delay_L <= {btn_delay_L[1:0], BTN[LEFT_BUT]};
+
     end
 end 
 //===============================
@@ -61,21 +65,31 @@ end
 assign AN = an_shift;
 
 //=======================
-//shift hex left
+//shift hexs
 integer it;
 reg [6:0] all_hexs [7:0];
 //reg [6:0] a0, a1, a2, a3, a4;
 always @(posedge clk) begin 
   if(!reset) begin
       for(it = 0; it < 8; it = it + 1) 
-        all_hexs[it] <= 'b1111_1111;
+        all_hexs[it] <= 'b111_1111;
   end else if (btn_press_R) begin 
 //      all_hexs <= {all_hexs[5:0], HEX};
+      all_hexs[6] <= all_hexs[5];
+      all_hexs[5] <= all_hexs[4];
+      all_hexs[4] <= all_hexs[3];
+      all_hexs[3] <= all_hexs[2];
+      all_hexs[2] <= all_hexs[1];
+      all_hexs[1] <= all_hexs[0];
+      all_hexs[0] <= hex_extra;
+  end else if (btn_press_L) begin
       all_hexs[0] <= all_hexs[1];
       all_hexs[1] <= all_hexs[2];
       all_hexs[2] <= all_hexs[3];
       all_hexs[3] <= all_hexs[4];
-      all_hexs[4] <= hex_extra;
+      all_hexs[4] <= all_hexs[5];
+      all_hexs[5] <= all_hexs[6];
+      all_hexs[6] <= 'b111_1111;
   end
 end 
 //==============================
@@ -109,8 +123,8 @@ assign HEX = hex_mult;
 // reg[6:0] hex_shift;
 
 // assign HEX = hex_shift;
-// assign DP =  'b0;
-// assign AN =  'b1111_1110;
+ assign DP =  'b0;
+ assign AN =  'b1111_1110;
 
 // always @(posedge clk) begin
 //     if(!reset) begin
