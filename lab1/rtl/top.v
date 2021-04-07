@@ -17,11 +17,11 @@ module top
 );
 
 //localparam COUNT_WIDTH = 16;
-localparam LEFT_BUT = 0;
-localparam RIGHT_BUT = 1;
+localparam LEFT_BUT = 1;
+localparam RIGHT_BUT = 0;
 
 
-reg [6:0] hex_extra;
+wire [6:0] hex_extra;
 //===============
 //to segments
 DC_DEC s_segm(
@@ -50,15 +50,30 @@ always @(posedge clk) begin
 end 
 //===============================
 
+reg[9:0] switch;
+wire    tick_sig;
+
+always @(posedge clk) begin
+    if(!reset)
+        switch <= 'b0;
+     else begin
+     
+     if (switch == 1000)
+        switch <= 'b0;
+     else
+        switch <= ('b1 + switch);
+     end 
+
+end
+assign tick_sig = (switch == 999);
 //============================
 //cycling shift registr
 reg [7:0] an_shift;
 always @(posedge clk) begin
     if(!reset)
        an_shift = 'b1111_1110;
-    else begin
+    else if (tick_sig)
        an_shift = {an_shift[6:0], an_shift[7]};
-     end
 end 
 //============================
 
@@ -67,14 +82,15 @@ assign AN = an_shift;
 //=======================
 //shift hexs
 integer it;
-reg [6:0] all_hexs [7:0];
-//reg [6:0] a0, a1, a2, a3, a4;
+assign DP =  'b1;
+reg [6:0] all_hexs [0:7];
 always @(posedge clk) begin 
   if(!reset) begin
       for(it = 0; it < 8; it = it + 1) 
         all_hexs[it] <= 'b111_1111;
   end else if (btn_press_R) begin 
-//      all_hexs <= {all_hexs[5:0], HEX};
+      //all_hexs <= {all_hexs[0:6], HEX};
+      all_hexs[7] <= all_hexs[6];
       all_hexs[6] <= all_hexs[5];
       all_hexs[5] <= all_hexs[4];
       all_hexs[4] <= all_hexs[3];
@@ -89,7 +105,8 @@ always @(posedge clk) begin
       all_hexs[3] <= all_hexs[4];
       all_hexs[4] <= all_hexs[5];
       all_hexs[5] <= all_hexs[6];
-      all_hexs[6] <= 'b111_1111;
+      all_hexs[6] <= all_hexs[7];
+      all_hexs[7] <= 'b111_1111;
   end
 end 
 //==============================
@@ -97,8 +114,8 @@ end
 //=========================
 //multiplec has return necessary hex 
 reg [6:0] hex_mult;
-always @(an_shift) begin
-  case(an_shift)
+always @(AN) begin
+  case(AN)
   
     8'b1111_1110:       hex_mult <= all_hexs[0];
     8'b1111_1101:       hex_mult <= all_hexs[1];
@@ -123,8 +140,8 @@ assign HEX = hex_mult;
 // reg[6:0] hex_shift;
 
 // assign HEX = hex_shift;
- assign DP =  'b0;
- assign AN =  'b1111_1110;
+
+// assign AN =  'b1111_1110;
 
 // always @(posedge clk) begin
 //     if(!reset) begin

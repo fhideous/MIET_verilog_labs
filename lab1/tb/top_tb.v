@@ -30,15 +30,15 @@ module top_tb( );
    
    wire [6:0]     HEX;
    wire           DP;
-   wire [15:0]    LED;
+//   wire [15:0]    LED;
    wire [7:0]     AN;
    
    localparam CLK_SEMIPERIOD = 5;
    
 top
-#(
-    .COUNT_INC( 2 )
-)
+//#(
+//    .COUNT_INC( 2 )
+//)
 DUT
 (
     .clk     ( clk ),
@@ -47,7 +47,7 @@ DUT
     .SW      ( SW ),
     .BTN     ( BTN ),
     
-    .LED     ( LED ),
+//    .LED     ( LED ),
     .HEX     ( HEX ),
     .DP      ( DP ),
     .AN      ( AN )
@@ -68,13 +68,27 @@ initial begin
 end 
 
 initial begin
-    SW = 'b0;
+    SW = 'b0000_0000_0000_0010;
     BTN = 'b0;  
     #1000
     BTN[0] = 'b1;
     #2000;
     BTN[0] = 'b0;
     
+    SW = 'b0000_0000_0000_1000;
+    BTN = 'b0;  
+    #1000;
+    BTN[0] = 'b1;
+    #2000;
+    BTN[0] = 'b0;
+
+    SW = 'b0000_0000_0000_1101;
+    BTN = 'b0;  
+    #1000;
+    BTN[0] = 'b1;
+    #2000;
+    BTN[0] = 'b0;
+     
 end
 
         
