@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="992780fs"></ZoomStartTime>
-      <ZoomEndTime time="1001444fs"></ZoomEndTime>
-      <Cursor1Time time="1000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="184800001fs"></ZoomEndTime>
+      <Cursor1Time time="9000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="159"></NameColumnWidth>
+      <NameColumnWidth column_width="154"></NameColumnWidth>
       <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="16" />
+   <WVObjectSize size="14" />
    <wvobject fp_name="/top_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -32,10 +32,6 @@
       <obj_property name="ElementShortName">SW[15:0]</obj_property>
       <obj_property name="ObjectShortName">SW[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/top_tb/HEX" type="array">
-      <obj_property name="ElementShortName">HEX[6:0]</obj_property>
-      <obj_property name="ObjectShortName">HEX[6:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/top_tb/DP" type="logic">
       <obj_property name="ElementShortName">DP</obj_property>
       <obj_property name="ObjectShortName">DP</obj_property>
@@ -43,6 +39,7 @@
    <wvobject fp_name="/top_tb/AN" type="array">
       <obj_property name="ElementShortName">AN[7:0]</obj_property>
       <obj_property name="ObjectShortName">AN[7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/top_tb/CLK_SEMIPERIOD" type="array">
       <obj_property name="ElementShortName">CLK_SEMIPERIOD[31:0]</obj_property>
@@ -76,13 +73,8 @@
       <obj_property name="ElementShortName">dc_dec_out[7:0]</obj_property>
       <obj_property name="ObjectShortName">dc_dec_out[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/top_tb/DUT/tic_sig" type="logic">
-      <obj_property name="ElementShortName">tic_sig</obj_property>
-      <obj_property name="ObjectShortName">tic_sig</obj_property>
-   </wvobject>
    <wvobject fp_name="/top_tb/DUT/an_shift" type="array">
       <obj_property name="ElementShortName">an_shift[7:0]</obj_property>
       <obj_property name="ObjectShortName">an_shift[7:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

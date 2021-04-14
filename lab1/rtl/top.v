@@ -17,8 +17,8 @@ module top
 );
 
 //localparam COUNT_WIDTH = 16;
-localparam LEFT_BUT = 1;
-localparam RIGHT_BUT = 0;
+localparam LEFT_BUT = 3;
+localparam RIGHT_BUT = 2;
 
 
 wire [6:0] hex_extra;
@@ -50,7 +50,7 @@ always @(posedge clk) begin
 end 
 //===============================
 
-reg[9:0] switch;
+reg[13:0] switch;
 wire    tick_sig;
 
 always @(posedge clk) begin
@@ -58,14 +58,14 @@ always @(posedge clk) begin
         switch <= 'b0;
      else begin
      
-     if (switch == 1000)
+     if (switch == 10000)
         switch <= 'b0;
      else
         switch <= ('b1 + switch);
      end 
 
 end
-assign tick_sig = (switch == 999);
+assign tick_sig = (switch == 9999);
 //============================
 //cycling shift registr
 reg [7:0] an_shift;
@@ -126,7 +126,7 @@ always @(AN) begin
     8'b1011_1111:       hex_mult <= all_hexs[6];
     8'b0111_1111:       hex_mult <= all_hexs[7];
     
-    default:            hex_mult <= all_hexs[0];
+    default:            hex_mult <= 7'b111_1111;
   endcase
 end
 
