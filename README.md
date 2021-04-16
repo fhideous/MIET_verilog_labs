@@ -1,3 +1,3 @@
 # MIET_verilog_labs
 
-task in doc folder
+task in lab/doc folder

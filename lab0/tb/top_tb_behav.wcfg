@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="top_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="355001fs"></ZoomEndTime>
+      <Cursor1Time time="0fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="146"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/top_tb/SW" type="array">
+      <obj_property name="ElementShortName">SW[15:0]</obj_property>
+      <obj_property name="ObjectShortName">SW[15:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/CA" type="logic">
+      <obj_property name="ElementShortName">CA</obj_property>
+      <obj_property name="ObjectShortName">CA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/CB" type="logic">
+      <obj_property name="ElementShortName">CB</obj_property>
+      <obj_property name="ObjectShortName">CB</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/CC" type="logic">
+      <obj_property name="ElementShortName">CC</obj_property>
+      <obj_property name="ObjectShortName">CC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/CD" type="logic">
+      <obj_property name="ElementShortName">CD</obj_property>
+      <obj_property name="ObjectShortName">CD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/CE" type="logic">
+      <obj_property name="ElementShortName">CE</obj_property>
+      <obj_property name="ObjectShortName">CE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/CF" type="logic">
+      <obj_property name="ElementShortName">CF</obj_property>
+      <obj_property name="ObjectShortName">CF</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/CG" type="logic">
+      <obj_property name="ElementShortName">CG</obj_property>
+      <obj_property name="ObjectShortName">CG</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/DP" type="logic">
+      <obj_property name="ElementShortName">DP</obj_property>
+      <obj_property name="ObjectShortName">DP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/dut/f" type="array">
+      <obj_property name="ElementShortName">f[3:0]</obj_property>
+      <obj_property name="ObjectShortName">f[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/dut/dc1_out" type="array">
+      <obj_property name="ElementShortName">dc1_out[3:0]</obj_property>
+      <obj_property name="ObjectShortName">dc1_out[3:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/dut/dc2_out" type="array">
+      <obj_property name="ElementShortName">dc2_out[3:0]</obj_property>
+      <obj_property name="ObjectShortName">dc2_out[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/dut/x_bus" type="array">
+      <obj_property name="ElementShortName">x_bus[3:0]</obj_property>
+      <obj_property name="ObjectShortName">x_bus[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/dut/AN" type="array">
+      <obj_property name="ElementShortName">AN[7:0]</obj_property>
+      <obj_property name="ObjectShortName">AN[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_tb/dut/HEX" type="array">
+      <obj_property name="ElementShortName">HEX[7:0]</obj_property>
+      <obj_property name="ObjectShortName">HEX[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+</wave_config>
