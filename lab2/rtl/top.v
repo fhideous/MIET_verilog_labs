@@ -15,6 +15,7 @@ reg [1:0] next_state_value;
 
 localparam STATE_SAVE = 'b01;
 localparam STATE_NEXT = 'b10;
+localparam BILLION = 'd100000000;
 
 localparam LEFT_BUT = 3;
 localparam RIGHT_BUT = 2;
@@ -83,7 +84,7 @@ assign AN = an_shift;
 *tic_cnt
 */
 reg[2:0] tic_cnt;
-reg[13:0] tic_1000;
+reg[33:0] tic_1000;
 
 always @(posedge clk) begin
     if(!reset) begin
@@ -92,7 +93,7 @@ always @(posedge clk) begin
     end
      else begin
          if (tic_cnt < 7) begin
-            if (tic_1000 == 1000) begin
+            if (tic_1000 == BILLION) begin
                 tic_1000 = 'b0;
                 tic_cnt = tic_cnt + 'b1;
             end
@@ -138,7 +139,7 @@ always @(posedge clk) begin
     end
   end else if (state_value == STATE_SAVE) begin
     //for(it = tic_cnt; it > 'd0; it = it - 'd1) begin
-        all_hexs[tic_cnt] = all_hexs['d7];
+        all_hexs[tic_cnt] = all_hexs[0'b0];
     end
   end
 //==============================
@@ -148,7 +149,7 @@ always @(posedge clk) begin
 //=========================
 //multiplec has return necessary hex 
 reg [6:0] hex_mult;
-always @(AN) begin
+always @(*) begin
   case(AN)
   
     8'b1111_1110:       hex_mult <= all_hexs[0];
@@ -174,11 +175,23 @@ always@(posedge clk) begin
         state_value <= next_state_value;
     end
 end
+
+reg [1:0] SW_CHGS;
+
+always@ (posedge clk) begin
+    if (!reset)
+        SW_CHGS <= 'b0;
+    else begin
+    SW_CHGS <=  {SW_CHGS[0], SW[9]};
+    end 
+end
+
+assign is_sw_9 = !SW_CHGS[1] & SW_CHGS[0];
  
 always@ (*) begin
     case (state_value)
      STATE_NEXT : begin 
-                if (SW[9] && ~(btn_press_R || btn_press_L))
+                if (is_sw_9)
                     next_state_value = STATE_SAVE;
                 else     
                     next_state_value = STATE_NEXT;

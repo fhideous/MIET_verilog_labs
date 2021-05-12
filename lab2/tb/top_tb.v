@@ -35,7 +35,7 @@ initial begin
         #CLK_SEMIPERIOD clk = ~clk;
     end 
 end
-/*
+
 initial begin
     reset = 'b0;
     #500;
@@ -43,33 +43,46 @@ initial begin
 end 
 
 initial begin
-    #1000
     SW = 'b0000_0000_0000_0010;
+    #600
     BTN = 4'b0;
     #300
     BTN[LEFT_BUT] = 'b0;  
     #100
     BTN[LEFT_BUT] = 'b1;
     #100
+    BTN[LEFT_BUT] = 'b0;  
+    #100
+    BTN[LEFT_BUT] = 'b1;
+    #100
+    BTN[LEFT_BUT] = 'b0;  
+    #100
+    BTN[LEFT_BUT] = 'b1;
+    #100
     BTN[LEFT_BUT] = 'b0;
+    SW[9] = 'b1;
+    #5000;
+    BTN[LEFT_BUT] = 'b1;
+    #100
+    BTN[LEFT_BUT] = 'b0;
+
+
+    /*
     SW = 'b0000_0000_0000_1000;
     BTN[LEFT_BUT]= 'b0;  
         #100
-
     BTN[LEFT_BUT] = 'b1;
         #100
-
     BTN[LEFT_BUT]= 'b0;
-
     SW = 'b0000_0000_0000_1101;
     BTN = 'b0;  
         #100
-
     BTN[LEFT_BUT]= 'b1;
         #100
 
-    BTN[LEFT_BUT] = 'b0;
-     
-end
+    BTN[LEFT_BUT] = 'b0;     
 */
+end
+
+
 endmodule
